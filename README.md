@@ -5,6 +5,7 @@ Sistema integral de Procesamiento de Lenguaje Natural (NLP) y clasificación de 
 
 ## Estructura del Proyecto
 
+```text
 proyecto_spam_es/
   ejecutar_menu.bat       -> Lanzador principal interactivo (Panel de control)
   scripts/                -> Scripts batch (.bat) y PowerShell (.ps1) para ejecución paso a paso
