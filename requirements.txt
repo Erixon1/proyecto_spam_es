@@ -26,6 +26,9 @@ accelerate>=0.26.0
 ipykernel>=6.20.0
 jupyter>=1.0.0
 
+# 5. Pruebas Unitarias y Aseguramiento de Calidad
+pytest>=7.4.0
+
 # Nota PyTorch:
 # Para GPU NVIDIA con CUDA 12.1:
 # pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121

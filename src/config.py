@@ -23,5 +23,11 @@ TEST_SIZE = 0.20
 # Usar --full en 04_traducir_es.py para traducir el dataset completo.
 MUESTRA_TRADUCCION = 1500
 
+# Hiperparámetros de traducción neuronal y checkpoints (04_traducir_es.py / traductor.py)
+MARIAN_BATCH_SIZE = 64
+MARIAN_MAX_LENGTH = 128
+MARIAN_TRUNC_CHARS = 600
+MARIAN_CHECKPOINT_INTERVAL = 2000
+
 # Fallback al CSV ya existente en la carpeta padre (Grupo 5) si HF no está disponible.
 CSV_FALLBACK = ROOT.parent / "enron_spam_cleaned.csv"

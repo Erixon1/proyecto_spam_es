@@ -5,8 +5,10 @@ Sistema integral de Procesamiento de Lenguaje Natural (NLP) y clasificación de 
 
 ## Estructura del Proyecto
 
-```text
 proyecto_spam_es/
+  ejecutar_menu.bat       -> Lanzador principal interactivo (Panel de control)
+  scripts/                -> Scripts batch (.bat) y PowerShell (.ps1) para ejecución paso a paso
+  tests/                  -> Suite de pruebas unitarias automatizadas (pytest)
   src/
     01_extraer_hf.py      -> Extracción desde Hugging Face (train/test) o fallback local
     02_limpiar.py         -> Limpieza, deduplicación y truncamiento controlado (10k chars)
@@ -100,5 +102,11 @@ python src/06_predecir.py "¡Felicidades! Has ganado un premio en efectivo de $5
 
 # Prueba en inglés (detección automática de idioma y traducción en vivo):
 python src/06_predecir.py "Free prize money and urgent discount offer click here to win"
+```
+
+### 5. Ejecución de Pruebas Unitarias (Testing)
+```powershell
+# Ejecuta la suite completa de pruebas unitarias y validación
+pytest tests/ -v
 ```
 
