@@ -114,5 +114,7 @@ python src/06_predecir.py "Free prize money and urgent discount offer click here
 pytest tests/ -v
 ```
 ## Imagen del Flujo
-<img width="1024" height="572" alt="image" src="https://github.com/user-attachments/assets/730e0104-5d1d-4937-a31e-025f86b7ec37" />
+<img width="2576" height="1438" alt="image" src="https://github.com/user-attachments/assets/0b4cee8a-7c7d-44d7-8827-7ddfd14a1d5e" />
+
+
 
