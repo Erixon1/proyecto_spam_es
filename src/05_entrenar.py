@@ -14,7 +14,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[0]))
-from config import (DATA_NLP, DATA_TRADUCIDO, DATA_NEURAL, MODELO_ES, MODELO_EN,
+from config import (DATA_NLP, DATA_TRADUCIDO, DATA_NEURAL, DATA_NEURAL_FULL, MODELO_ES, MODELO_EN,
                     METRICAS_CSV, RANDOM_STATE, TEST_SIZE)
 from modelo_wrapper import SpamClassifierWrapper
 
@@ -253,8 +253,11 @@ def main():
     corpora = [("en", pd.read_csv(DATA_NLP), "clean_en", "english")]
     if DATA_TRADUCIDO.exists():
         corpora.append(("es_lex", pd.read_csv(DATA_TRADUCIDO), "texto_es", stopwords_es))
-    if DATA_NEURAL.exists():
-        corpora.append(("es_neural", pd.read_csv(DATA_NEURAL), "texto_es", stopwords_es))
+    
+    ruta_neural = DATA_NEURAL_FULL if DATA_NEURAL_FULL.exists() else DATA_NEURAL
+    if ruta_neural.exists():
+        print(f"[05] Usando corpus neural: {ruta_neural.name}")
+        corpora.append(("es_neural", pd.read_csv(ruta_neural), "texto_es", stopwords_es))
 
     todas, wrappers_guardar = [], {}
     for nombre, df, col, stop in corpora:

@@ -82,9 +82,12 @@ python src/02_limpiar.py
 # Etapa 03: Preprocesamiento NLP, tokens y censo de idiomas
 python src/03_preprocesar_nlp.py
 
-# Etapa 04: Traducción (Léxica o Neuronal MarianMT en GPU)
+# Etapa 04: Traducción (Léxica o Neuronal MarianMT en GPU sin truncar)
 python src/04_traducir_es.py --full
-# O en GPU: python src/04_traducir_es.py --marian --resume
+# Traducción neuronal completa sin truncar (Recomendado Patch acelerado):
+python src/04_traducir_es.py --marian --full-chunks --patch-existing --resume
+# O re-traducción completa total desde cero:
+python src/04_traducir_es.py --marian --full-chunks --resume
 
 # Etapa 05: Entrenamiento, optimización GridSearch, umbrales y XAI
 python src/05_entrenar.py

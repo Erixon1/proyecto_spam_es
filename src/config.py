@@ -8,6 +8,7 @@ DATA_LIMPIO = ROOT / "data" / "02_limpio" / "enron_limpio.csv"
 DATA_NLP = ROOT / "data" / "03_nlp" / "enron_nlp_en.csv"
 DATA_TRADUCIDO = ROOT / "data" / "04_traducido" / "enron_traducido_es.csv"
 DATA_NEURAL = ROOT / "data" / "04_traducido" / "enron_traducido_es_neural.csv"
+DATA_NEURAL_FULL = ROOT / "data" / "04_traducido" / "enron_traducido_es_neural_full.csv"
 TEST_EN = ROOT / "data" / "04_traducido" / "hf_test_en.csv"
 TEST_ES = ROOT / "data" / "04_traducido" / "hf_test_es_neural.csv"
 HELDOUT_CSV = ROOT / "docs" / "evaluacion_heldout.csv"
@@ -25,9 +26,11 @@ MUESTRA_TRADUCCION = 1500
 
 # Hiperparámetros de traducción neuronal y checkpoints (04_traducir_es.py / traductor.py)
 MARIAN_BATCH_SIZE = 64
-MARIAN_MAX_LENGTH = 128
+MARIAN_MAX_LENGTH = 256
 MARIAN_TRUNC_CHARS = 600
-MARIAN_CHECKPOINT_INTERVAL = 2000
+MARIAN_CHUNK_MAX_CHARS = 500
+MARIAN_CHECKPOINT_INTERVAL = 200
 
 # Fallback al CSV ya existente en la carpeta padre (Grupo 5) si HF no está disponible.
 CSV_FALLBACK = ROOT.parent / "enron_spam_cleaned.csv"
+

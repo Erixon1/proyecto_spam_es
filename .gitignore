@@ -44,6 +44,7 @@ venv.bak/
 .tmp_*
 *.tmp
 *.temp
+*.zip
 data/*/.tmp_*
 data/*/.tmp_checkpoint_*.csv
 

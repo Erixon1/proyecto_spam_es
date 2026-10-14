@@ -22,12 +22,12 @@ from pathlib import Path
 
 # Inclusión del directorio raíz de módulos
 sys.path.insert(0, str(Path(__file__).resolve().parents[0]))
-from config import (DATA_NLP, DATA_TRADUCIDO, DATA_NEURAL, DICCIONARIO_CSV,
+from config import (DATA_NLP, DATA_TRADUCIDO, DATA_NEURAL, DATA_NEURAL_FULL, DICCIONARIO_CSV,
                     EJEMPLOS_CSV, MUESTRA_TRADUCCION, MARIAN_BATCH_SIZE,
-                    MARIAN_MAX_LENGTH, MARIAN_TRUNC_CHARS,
+                    MARIAN_MAX_LENGTH, MARIAN_TRUNC_CHARS, MARIAN_CHUNK_MAX_CHARS,
                     MARIAN_CHECKPOINT_INTERVAL, RANDOM_STATE)
 from abreviaturas import ABBR_EN_EXPANSION, ABBR_EN_A_ES
-from traductor import traducir_lote, traducir_lexico
+from traductor import traducir_lote, traducir_lexico, traducir_texto_completo, segmentar_en_oraciones
 
 CHECKPOINT = DATA_TRADUCIDO.parent / ".tmp_checkpoint_neural.csv"
 
@@ -121,51 +121,148 @@ def modo_lexico(df, muestra: int):
 
 
 def modo_marian(df, batch_size: int, max_length: int, trunc_chars: int,
-                progreso_cada: int, resume: bool):
-    """Ejecuta traducción neuronal MarianMT con soporte de reanudación por checkpoints."""
+                progreso_cada: int, resume: bool, max_chars_chunk: int = 500,
+                patch_existing: bool = False, checkpoint_path: Path = CHECKPOINT,
+                num_beams: int = 1):
+    """Ejecuta traducción neuronal MarianMT con fragmentación por oraciones y checkpoints."""
     import pandas as pd
+    
+    # Modo Patch: re-traduce solo los textos largos (>600 caracteres) o faltantes aprovechando enron_traducido_es_neural.csv
+    if patch_existing and DATA_NEURAL.exists():
+        print(f"[04] Modo Patch activado: sincronizando traducciones previas de '{DATA_NEURAL.name}'...")
+        df_prev = pd.read_csv(DATA_NEURAL)
+        
+        # Mapeo robusto por message_id si existe
+        if "message_id" in df.columns and "message_id" in df_prev.columns and "texto_es" in df_prev.columns:
+            map_es = dict(zip(df_prev["message_id"], df_prev["texto_es"]))
+            df["texto_es"] = df["message_id"].map(map_es).fillna("")
+        elif len(df_prev) == len(df):
+            df["texto_es"] = df_prev["texto_es"].fillna("").values
+        else:
+            min_len = min(len(df), len(df_prev))
+            df["texto_es"] = ""
+            df.iloc[:min_len, df.columns.get_loc("texto_es")] = df_prev["texto_es"].iloc[:min_len].fillna("").values
+
+        # Identificar los que requieren traducción:
+        # 1. Correos largos (>600 caracteres)
+        # 2. Correos que no tienen traducción previa (texto_es vacío o nulo)
+        mask_largos = (df["clean_en"].astype(str).str.len() > 600) | (df["texto_es"].astype(str).str.strip() == "")
+        n_largos = int(mask_largos.sum())
+        n_conservados = len(df) - n_largos
+        print(f"[04] Textos cortos con traducción previa conservados: {n_conservados}")
+        print(f"[04] Textos a procesar con fragmentación completa: {n_largos}")
+        
+        indices_largos = df[mask_largos].index.tolist()
+        textos_largos = df.loc[mask_largos, "clean_en"].tolist()
+        
+        ckpt_patch = checkpoint_path.parent / ".tmp_checkpoint_patch.csv"
+        hechos_patch = []
+        hechos_frags = []
+        inicio_patch = 0
+        if resume and ckpt_patch.exists():
+            try:
+                ck = pd.read_csv(ckpt_patch)
+                hechos_patch = ck["texto_es"].fillna("").astype(str).tolist()
+                if "num_fragmentos" in ck.columns:
+                    hechos_frags = ck["num_fragmentos"].fillna(1).astype(int).tolist()
+                else:
+                    hechos_frags = [1] * len(hechos_patch)
+                inicio_patch = len(hechos_patch)
+                pct_res = (inicio_patch / n_largos) * 100 if n_largos > 0 else 0
+                print(f"[04] Reanudación patch: {inicio_patch}/{n_largos} ({pct_res:.1f}%) ya procesados previamente.")
+            except Exception:
+                hechos_patch = []
+                hechos_frags = []
+                inicio_patch = 0
+                
+        restantes_patch = textos_largos[inicio_patch:]
+        res_patch, frags_patch = traducir_lote(
+            restantes_patch,
+            usar_marian=True,
+            batch_size=batch_size,
+            max_length=max_length,
+            trunc_chars=trunc_chars,
+            max_chars_chunk=max_chars_chunk,
+            progreso_cada=progreso_cada,
+            checkpoint_csv=str(ckpt_patch),
+            return_num_fragmentos=True,
+            num_beams=num_beams
+        )
+        
+        if res_patch is None:
+            raise SystemExit("[04] Error en inferencia MarianMT; progreso guardado en checkpoint. Reintenta con '--resume'.")
+            
+        todos_patch = hechos_patch + res_patch
+        todos_frags = hechos_frags + frags_patch
+        df.loc[indices_largos, "texto_es"] = todos_patch
+        
+        df["num_fragmentos"] = 1
+        if len(todos_frags) == n_largos:
+            df.loc[indices_largos, "num_fragmentos"] = todos_frags
+        
+        if ckpt_patch.exists():
+            try:
+                ckpt_patch.unlink()
+            except OSError:
+                pass
+        return df
+
+    # Modo estándar: traduce la lista completa de textos
     textos = df["clean_en"].tolist()
     hechos = []
+    hechos_frags = []
     inicio = 0
     
-    if resume and CHECKPOINT.exists():
+    if resume and checkpoint_path.exists():
         try:
-            ck = pd.read_csv(CHECKPOINT, usecols=["texto_es"])
+            ck = pd.read_csv(checkpoint_path)
             hechos = ck["texto_es"].fillna("").astype(str).tolist()
+            if "num_fragmentos" in ck.columns:
+                hechos_frags = ck["num_fragmentos"].fillna(1).astype(int).tolist()
+            else:
+                hechos_frags = [1] * len(hechos)
             inicio = len(hechos)
-            print(f"[04] Reanudación (Resume): {inicio}/{len(textos)} registros ya procesados previamente.")
+            pct_ini = (inicio / len(textos)) * 100 if len(textos) > 0 else 0
+            print(f"[04] Reanudación (Resume): {inicio}/{len(textos)} ({pct_ini:.1f}%) registros ya procesados previamente.")
         except Exception as e:
             print(f"[04] Advertencia al leer checkpoint ({e}); se iniciará desde el principio.")
             hechos = []
+            hechos_frags = []
             inicio = 0
 
     restantes = textos[inicio:]
-    nuevos = traducir_lote(
+    nuevos, nuevos_frags = traducir_lote(
         restantes,
         usar_marian=True,
         batch_size=batch_size,
         max_length=max_length,
         trunc_chars=trunc_chars,
+        max_chars_chunk=max_chars_chunk,
         progreso_cada=progreso_cada,
-        checkpoint_csv=str(CHECKPOINT)
+        checkpoint_csv=str(checkpoint_path),
+        return_num_fragmentos=True,
+        num_beams=num_beams
     )
     
     if nuevos is None:
         if hechos:
-            pd.DataFrame({"texto_es": hechos}).to_csv(CHECKPOINT, index=False)
+            pd.DataFrame({"texto_es": hechos, "num_fragmentos": hechos_frags}).to_csv(checkpoint_path, index=False)
         raise SystemExit("[04] Error en inferencia MarianMT; progreso guardado en checkpoint. Reintenta con '--resume'.")
     
     todos = hechos + nuevos
-    import re as _re
-    df["texto_es"] = [_re.sub(r"\bnumber\b", "número", str(t)) for t in todos]
+    todos_frags = hechos_frags + nuevos_frags
     
-    if CHECKPOINT.exists():
+    df["texto_es"] = todos
+    df["num_fragmentos"] = todos_frags
+    
+    if checkpoint_path.exists():
         try:
-            CHECKPOINT.unlink()
+            checkpoint_path.unlink()
         except OSError:
             pass
             
     return df
+
 
 
 def guardar_grafico_etapa04(df, ruta_grafico: Path, etiqueta: str):
@@ -221,6 +318,8 @@ def finalizar(df, salida: Path, etiqueta: str):
     """Guarda el corpus traducido, genera ejemplos multilingües y el gráfico diagnóstico."""
     import pandas as pd
     df["longitud_es"] = df["texto_es"].astype(str).apply(len)
+    if "num_fragmentos" not in df.columns:
+        df["num_fragmentos"] = 1
     
     # Preservar orden y columnas clave
     salida.parent.mkdir(parents=True, exist_ok=True)
@@ -230,7 +329,7 @@ def finalizar(df, salida: Path, etiqueta: str):
     guardar_diccionario()
     
     # Muestra representativa para ejemplos multilingües
-    cols_ejemplo = [c for c in ["message_id", "Message", "idioma_detectado", "clean_en", "texto_es", "Category"] if c in df.columns]
+    cols_ejemplo = [c for c in ["message_id", "Message", "idioma_detectado", "clean_en", "texto_es", "num_fragmentos", "Category"] if c in df.columns]
     if "idioma_detectado" in df.columns:
         ejemplos_partes = []
         for lang, g in df.groupby("idioma_detectado"):
@@ -255,8 +354,10 @@ def finalizar(df, salida: Path, etiqueta: str):
 def main(entrada: Path = DATA_NLP, salida: Path = DATA_TRADUCIDO,
          muestra: int = MUESTRA_TRADUCCION, usar_marian: bool = False,
          batch_size: int = MARIAN_BATCH_SIZE, max_length: int = MARIAN_MAX_LENGTH,
-         trunc_chars: int = MARIAN_TRUNC_CHARS, progreso_cada: int = MARIAN_CHECKPOINT_INTERVAL,
-         resume: bool = False, salida_neural: Path = DATA_NEURAL):
+         trunc_chars: int = MARIAN_TRUNC_CHARS, max_chars_chunk: int = MARIAN_CHUNK_MAX_CHARS,
+         progreso_cada: int = MARIAN_CHECKPOINT_INTERVAL,
+         resume: bool = False, salida_neural: Path = DATA_NEURAL,
+         patch_existing: bool = False, num_beams: int = 1):
     """Punto de entrada principal para la etapa 04."""
     import pandas as pd
     
@@ -270,7 +371,7 @@ def main(entrada: Path = DATA_NLP, salida: Path = DATA_TRADUCIDO,
     validar_entrada(df, entrada)
     df = sanear_textos(df)
     
-    modo_str = "marian-neuronal" if usar_marian else "léxico"
+    modo_str = "marian-neuronal (sin truncar)" if (usar_marian and trunc_chars == 0) else ("marian-neuronal" if usar_marian else "léxico")
     print(f"[04] Entrada NLP cargada: {len(df)} filas (Modo: {modo_str})")
     
     if usar_marian:
@@ -279,8 +380,11 @@ def main(entrada: Path = DATA_NLP, salida: Path = DATA_TRADUCIDO,
             batch_size=batch_size,
             max_length=max_length,
             trunc_chars=trunc_chars,
+            max_chars_chunk=max_chars_chunk,
             progreso_cada=progreso_cada,
-            resume=resume
+            resume=resume,
+            patch_existing=patch_existing,
+            num_beams=num_beams
         )
         finalizar(df, salida_neural, "marian-neuronal")
     else:
@@ -304,12 +408,20 @@ if __name__ == "__main__":
                     help="Traduce el dataset completo en modo léxico (ignora --muestra).")
     ap.add_argument("--marian", action="store_true",
                     help="Activa traducción neuronal MarianMT en GPU/CPU (siempre sobre dataset completo).")
+    ap.add_argument("--full-chunks", action="store_true",
+                    help="Traduce el dataset completo sin truncar mediante segmentación por oraciones (pone trunc_chars a 0 y guarda en DATA_NEURAL_FULL).")
+    ap.add_argument("--patch-existing", action="store_true",
+                    help="Modo acelerado: conserva correos cortos ya traducidos (<=600 chars) y solo re-traduce correos largos con fragmentación.")
+    ap.add_argument("--max-chars-chunk", type=int, default=MARIAN_CHUNK_MAX_CHARS,
+                    help=f"Caracteres máximos por fragmento de oración en MarianMT (defecto: {MARIAN_CHUNK_MAX_CHARS}).")
     ap.add_argument("--batch", type=int, default=MARIAN_BATCH_SIZE,
                     help=f"Tamaño de lote (batch size) para MarianMT (defecto: {MARIAN_BATCH_SIZE}).")
     ap.add_argument("--max-len", type=int, default=MARIAN_MAX_LENGTH,
                     help=f"Longitud máxima de tokens en MarianMT (defecto: {MARIAN_MAX_LENGTH}).")
+    ap.add_argument("--num-beams", type=int, default=1,
+                    help="Número de vigas para MarianMT (defecto: 1 para máxima velocidad, 4 para beam search estándar).")
     ap.add_argument("--trunc-chars", type=int, default=MARIAN_TRUNC_CHARS,
-                    help=f"Caracteres máximos de entrada por correo para MarianMT (defecto: {MARIAN_TRUNC_CHARS}).")
+                    help=f"Caracteres máximos de entrada por correo para MarianMT (defecto: {MARIAN_TRUNC_CHARS}, usa 0 para no truncar).")
     ap.add_argument("--checkpoint-interval", type=int, default=MARIAN_CHECKPOINT_INTERVAL,
                     help=f"Frecuencia de guardado de checkpoints en filas (defecto: {MARIAN_CHECKPOINT_INTERVAL}).")
     ap.add_argument("--resume", action="store_true",
@@ -318,15 +430,24 @@ if __name__ == "__main__":
     a = ap.parse_args()
     muestra_final = 0 if (a.full or a.marian) else a.muestra
     
+    trunc_val = 0 if a.full_chunks else a.trunc_chars
+    salida_neural_val = Path(a.salida_neural)
+    if a.full_chunks and a.salida_neural == str(DATA_NEURAL):
+        salida_neural_val = DATA_NEURAL_FULL
+        
     main(
         entrada=Path(a.entrada),
         salida=Path(a.salida),
-        salida_neural=Path(a.salida_neural),
+        salida_neural=salida_neural_val,
         muestra=muestra_final,
         usar_marian=a.marian,
         batch_size=a.batch,
         max_length=a.max_len,
-        trunc_chars=a.trunc_chars,
+        trunc_chars=trunc_val,
+        max_chars_chunk=a.max_chars_chunk,
         progreso_cada=a.checkpoint_interval,
-        resume=a.resume
+        resume=a.resume,
+        patch_existing=a.patch_existing,
+        num_beams=a.num_beams
     )
+
