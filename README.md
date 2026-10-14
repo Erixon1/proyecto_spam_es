@@ -113,4 +113,6 @@ python src/06_predecir.py "Free prize money and urgent discount offer click here
 # Ejecuta la suite completa de pruebas unitarias y validación
 pytest tests/ -v
 ```
+## Imagen del Flujo
+<img width="1024" height="572" alt="image" src="https://github.com/user-attachments/assets/730e0104-5d1d-4937-a31e-025f86b7ec37" />
 
