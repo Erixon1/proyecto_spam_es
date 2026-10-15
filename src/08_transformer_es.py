@@ -12,14 +12,14 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[0]))
-from config import DATA_TRADUCIDO, DATA_NEURAL, ROOT, RANDOM_STATE
+from config import DATA_TRADUCIDO, DATA_NEURAL, DATA_NEURAL_FULL, ROOT, RANDOM_STATE
 
 METRICAS_TRANSFORMER = ROOT / "docs" / "metricas_transformer.csv"
 
 
 def cargar_datos(sample_n: int = 2000):
     import pandas as pd
-    ruta = DATA_NEURAL if DATA_NEURAL.exists() else DATA_TRADUCIDO
+    ruta = DATA_NEURAL_FULL if DATA_NEURAL_FULL.exists() else (DATA_NEURAL if DATA_NEURAL.exists() else DATA_TRADUCIDO)
     if not ruta.exists():
         raise FileNotFoundError(f"No se encontró dataset en español en {ruta}. Ejecuta 04_traducir_es.py primero.")
     

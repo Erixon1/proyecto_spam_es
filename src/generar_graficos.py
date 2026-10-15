@@ -25,7 +25,8 @@ from sklearn.metrics import (
     roc_curve, auc, precision_recall_curve, average_precision_score
 )
 from sklearn.model_selection import train_test_split
-from config import DATA_LIMPIO, DATA_NLP, DATA_NEURAL, DATA_TRADUCIDO, MODELO_EN, MODELO_ES, METRICAS_CSV, RANDOM_STATE, TEST_SIZE
+from config import (DATA_LIMPIO, DATA_NLP, DATA_NEURAL, DATA_NEURAL_FULL, DATA_TRADUCIDO,
+                    MODELO_EN, MODELO_ES, METRICAS_CSV, RANDOM_STATE, TEST_SIZE)
 from modelo_wrapper import SpamClassifierWrapper
 
 # Configurar estilo visual profesional
@@ -132,7 +133,8 @@ def graficar_matrices_confusion():
         return
         
     df_en = pd.read_csv(DATA_NLP)
-    df_es = pd.read_csv(DATA_NEURAL if DATA_NEURAL.exists() else DATA_TRADUCIDO)
+    ruta_es = DATA_NEURAL_FULL if DATA_NEURAL_FULL.exists() else (DATA_NEURAL if DATA_NEURAL.exists() else DATA_TRADUCIDO)
+    df_es = pd.read_csv(ruta_es)
     
     with open(MODELO_EN, "rb") as f:
         mod_en = pickle.load(f)
@@ -213,7 +215,8 @@ def graficar_curvas_roc_pr():
     if not (MODELO_EN.exists() and MODELO_ES.exists()):
         return
     df_en = pd.read_csv(DATA_NLP)
-    df_es = pd.read_csv(DATA_NEURAL if DATA_NEURAL.exists() else DATA_TRADUCIDO)
+    ruta_es = DATA_NEURAL_FULL if DATA_NEURAL_FULL.exists() else (DATA_NEURAL if DATA_NEURAL.exists() else DATA_TRADUCIDO)
+    df_es = pd.read_csv(ruta_es)
     
     with open(MODELO_EN, "rb") as f: mod_en = pickle.load(f)
     with open(MODELO_ES, "rb") as f: mod_es = pickle.load(f)
