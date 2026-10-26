@@ -86,3 +86,6 @@ desktop.ini
 .spyderproject
 .spyproject
 .ropeproject
+
+# 9. Integracion local de Graphify (no se versiona)
+.opencode/

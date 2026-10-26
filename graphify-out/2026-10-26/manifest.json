@@ -1,0 +1,278 @@
+{
+  "docs/pool_correos_prueba.json": {
+    "mtime": 1792212105.1309874,
+    "seen": 1792629811.7883942,
+    "ast_hash": "dce5282caf24fb0f8c07d6d8582374d2",
+    "semantic_hash": "dce5282caf24fb0f8c07d6d8582374d2"
+  },
+  "scripts/empaquetar_para_colab.py": {
+    "mtime": 1791935026.2841194,
+    "seen": 1792629811.7883942,
+    "ast_hash": "f51c62f02f6eba91fe683b50b35820d3",
+    "semantic_hash": "f51c62f02f6eba91fe683b50b35820d3"
+  },
+  "scripts/menu.ps1": {
+    "mtime": 1791397546.0706456,
+    "seen": 1792629811.7883942,
+    "ast_hash": "f5b9ce10764c1aaa4ca937cbbcfe3a05",
+    "semantic_hash": "f5b9ce10764c1aaa4ca937cbbcfe3a05"
+  },
+  "src/01_extraer_hf.py": {
+    "mtime": 1791217378.2647185,
+    "seen": 1792629811.7883942,
+    "ast_hash": "e6bfc617820c9145e3af463bc0738df9",
+    "semantic_hash": "e6bfc617820c9145e3af463bc0738df9"
+  },
+  "src/02_limpiar.py": {
+    "mtime": 1791217450.1217113,
+    "seen": 1792629811.7883942,
+    "ast_hash": "5b2e647dbab44ab0c80e980c2cfc79b5",
+    "semantic_hash": "5b2e647dbab44ab0c80e980c2cfc79b5"
+  },
+  "src/03_preprocesar_nlp.py": {
+    "mtime": 1791224517.2636542,
+    "seen": 1792629811.7883942,
+    "ast_hash": "9b5ab00d1489dd7f8c30afc729aea98d",
+    "semantic_hash": "9b5ab00d1489dd7f8c30afc729aea98d"
+  },
+  "src/04_traducir_es.py": {
+    "mtime": 1791934642.4880786,
+    "seen": 1792629811.7883942,
+    "ast_hash": "58b026b2205ed94dde427590f417978f",
+    "semantic_hash": "58b026b2205ed94dde427590f417978f"
+  },
+  "src/05_entrenar.py": {
+    "mtime": 1793002146.2904875,
+    "seen": 1793002817.5625215,
+    "ast_hash": "06fb21a89a551d0bdc1a6850afda8a98",
+    "semantic_hash": ""
+  },
+  "src/06_predecir.py": {
+    "mtime": 1793002021.9028845,
+    "seen": 1793002817.5625215,
+    "ast_hash": "2f120a481dab4aaf07924899a08e8d33",
+    "semantic_hash": ""
+  },
+  "src/07_evaluacion_final.py": {
+    "mtime": 1791217489.3427675,
+    "seen": 1792629811.7883942,
+    "ast_hash": "f917246a5179858f2964c61517d61824",
+    "semantic_hash": "f917246a5179858f2964c61517d61824"
+  },
+  "src/08_transformer_es.py": {
+    "mtime": 1792091845.9000895,
+    "seen": 1792629811.7883942,
+    "ast_hash": "fa687992787a8d7ce11a9356f69b0580",
+    "semantic_hash": "fa687992787a8d7ce11a9356f69b0580"
+  },
+  "src/__init__.py": {
+    "mtime": 1790841958.4441185,
+    "seen": 1792629811.7883942,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "src/abreviaturas.py": {
+    "mtime": 1791202512.834476,
+    "seen": 1792629811.7883942,
+    "ast_hash": "3fee04d0eb5f5eb79341bad6a75467c8",
+    "semantic_hash": "3fee04d0eb5f5eb79341bad6a75467c8"
+  },
+  "src/config.py": {
+    "mtime": 1791934530.668757,
+    "seen": 1792629811.7883942,
+    "ast_hash": "211e803af6e827862f69bfaae4d613bb",
+    "semantic_hash": "211e803af6e827862f69bfaae4d613bb"
+  },
+  "src/generar_graficos.py": {
+    "mtime": 1792091845.9006104,
+    "seen": 1792629811.7883942,
+    "ast_hash": "b295086221268d512dca2ac66c1411e4",
+    "semantic_hash": "b295086221268d512dca2ac66c1411e4"
+  },
+  "src/modelo_wrapper.py": {
+    "mtime": 1792219595.7712972,
+    "seen": 1792629811.7883942,
+    "ast_hash": "e87e5b04772868e1b0472573deb255e9",
+    "semantic_hash": "e87e5b04772868e1b0472573deb255e9"
+  },
+  "src/pipeline.py": {
+    "mtime": 1790983911.1656272,
+    "seen": 1792629811.7883942,
+    "ast_hash": "59f937957c26caab8c6139b565cb8143",
+    "semantic_hash": "59f937957c26caab8c6139b565cb8143"
+  },
+  "src/traductor.py": {
+    "mtime": 1791949780.9571342,
+    "seen": 1792629811.7883942,
+    "ast_hash": "4aaab2fcc380813ad94d6db43672da6f",
+    "semantic_hash": "4aaab2fcc380813ad94d6db43672da6f"
+  },
+  "tests/__init__.py": {
+    "mtime": 1791396866.193166,
+    "seen": 1792629811.7883942,
+    "ast_hash": "9e89c70bb07d0004a2c185d5142e26f7",
+    "semantic_hash": "9e89c70bb07d0004a2c185d5142e26f7"
+  },
+  "tests/test_traduccion.py": {
+    "mtime": 1791396862.366373,
+    "seen": 1792629811.7883942,
+    "ast_hash": "12065681dc7972b829e280faac3dc808",
+    "semantic_hash": "12065681dc7972b829e280faac3dc808"
+  },
+  "AGENTS.md": {
+    "mtime": 1792629791.6498082,
+    "seen": 1792629943.6254637,
+    "ast_hash": "f36539ecc9af68f33ebd72770ce4a19e",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1793019301.5470572,
+    "seen": 1793019458.8321455,
+    "ast_hash": "4384b936f5aa9206d1c86abd218252fe",
+    "semantic_hash": ""
+  },
+  "docs/pool_correos_prueba.md": {
+    "mtime": 1792212144.2835777,
+    "seen": 1792629943.6254637,
+    "ast_hash": "62c4a76be29187449feb72312de40402",
+    "semantic_hash": ""
+  },
+  "docs/procesamiento_datos.md": {
+    "mtime": 1793019326.2906835,
+    "seen": 1793019458.8321455,
+    "ast_hash": "4b51931303d820c25873d035f3847197",
+    "semantic_hash": ""
+  },
+  "requirements.txt": {
+    "mtime": 1791396936.0782416,
+    "seen": 1792629943.6254637,
+    "ast_hash": "991386511bf7306ad2cdaa98d5650fc0",
+    "semantic_hash": ""
+  },
+  "docs/graficos/01_distribucion_clases.png": {
+    "mtime": 1792090470.6342542,
+    "seen": 1792629943.6254637,
+    "ast_hash": "926153218760e052aea35490f2a0a388",
+    "semantic_hash": ""
+  },
+  "docs/graficos/01_distribucion_inicial_clases.png": {
+    "mtime": 1791218359.7088728,
+    "seen": 1792629943.6254637,
+    "ast_hash": "999e67acbd15be64839e39bd38dc5b49",
+    "semantic_hash": ""
+  },
+  "docs/graficos/02_distribucion_longitud.png": {
+    "mtime": 1792090472.6078403,
+    "seen": 1792629943.6254637,
+    "ast_hash": "5a0fddc45c6420f9a7df4b37a399f26c",
+    "semantic_hash": ""
+  },
+  "docs/graficos/02_limpieza_duplicados_y_truncamiento.png": {
+    "mtime": 1791217521.5698676,
+    "seen": 1792629943.6254637,
+    "ast_hash": "c63df96ea0ae5ea935097426667dd1a7",
+    "semantic_hash": ""
+  },
+  "docs/graficos/03_comparativa_metricas_modelos.png": {
+    "mtime": 1792091845.8931327,
+    "seen": 1792629943.6254637,
+    "ast_hash": "f4eff20532a38e7dd87d4d3e70d5c321",
+    "semantic_hash": ""
+  },
+  "docs/graficos/03_nlp_tokens_preservados.png": {
+    "mtime": 1791224508.8780684,
+    "seen": 1792629943.6254637,
+    "ast_hash": "24497d85d29282d1af3efe5013842c52",
+    "semantic_hash": ""
+  },
+  "docs/graficos/04_matrices_confusion.png": {
+    "mtime": 1792091845.8947055,
+    "seen": 1792629943.6254637,
+    "ast_hash": "3164271ef40d2db34efbe7ccf1171bb6",
+    "semantic_hash": ""
+  },
+  "docs/graficos/04_traduccion_comparativa_longitud.png": {
+    "mtime": 1791948438.0607882,
+    "seen": 1792629943.6254637,
+    "ast_hash": "43371e8f0bf247ee39b17ddbb2e8fb09",
+    "semantic_hash": ""
+  },
+  "docs/graficos/05_entrenamiento_matrices_y_xai.png": {
+    "mtime": 1793002596.1647959,
+    "seen": 1793002817.5625215,
+    "ast_hash": "b26a11d3698f6e33903f7a7d2834f84b",
+    "semantic_hash": ""
+  },
+  "docs/graficos/05_top_terminos_explicabilidad_xai.png": {
+    "mtime": 1792091845.896903,
+    "seen": 1792629943.6254637,
+    "ast_hash": "753b3a609cd30eecfe99bac0302f4c85",
+    "semantic_hash": ""
+  },
+  "docs/graficos/06_curvas_roc_y_pr.png": {
+    "mtime": 1792091845.8989992,
+    "seen": 1792629943.6254637,
+    "ast_hash": "39a5281bcf98c141ea38b7e0b8a7f488",
+    "semantic_hash": ""
+  },
+  "docs/graficos/07_evaluacion_heldout_metricas.png": {
+    "mtime": 1792273528.3409214,
+    "seen": 1792629943.6254637,
+    "ast_hash": "780d1df4fc9cd8ac3aa46bc991c17ad8",
+    "semantic_hash": ""
+  },
+  "data/pruebas_correos.json": {
+    "mtime": 1793005170.073505,
+    "seen": 1793005310.0576222,
+    "ast_hash": "bba5c74429f5a0b59385a0a226167b7e",
+    "semantic_hash": ""
+  },
+  "scripts/probar_banco_correos.py": {
+    "mtime": 1793002125.5731213,
+    "seen": 1793002817.5625215,
+    "ast_hash": "bedc61a3ca5cbef7248f483bbc4e5148",
+    "semantic_hash": ""
+  },
+  "src/servidor_web.py": {
+    "mtime": 1793011510.2424464,
+    "seen": 1793011610.6768174,
+    "ast_hash": "3e0d6096074956fce626178d85027695",
+    "semantic_hash": ""
+  },
+  "web/app.js": {
+    "mtime": 1793015312.812734,
+    "seen": 1793015532.821237,
+    "ast_hash": "8e3172a6e0b150e87bb21347e794dd5f",
+    "semantic_hash": ""
+  },
+  "docs/PLAN_ENTRENAMIENTO_Y_VISUAL.md": {
+    "mtime": 1793019422.7501316,
+    "seen": 1793019458.8321455,
+    "ast_hash": "85123195dec5b21a80ca02d2e45a7a34",
+    "semantic_hash": ""
+  },
+  "web/index.html": {
+    "mtime": 1793015227.0979493,
+    "seen": 1793015532.821237,
+    "ast_hash": "8839cc0670af572711828cf0af0a3239",
+    "semantic_hash": ""
+  },
+  "data/backup_pruebas/pruebas_correos_original.json": {
+    "mtime": 1793005170.073505,
+    "seen": 1793007080.7216353,
+    "ast_hash": "bba5c74429f5a0b59385a0a226167b7e",
+    "semantic_hash": ""
+  },
+  "models/backup_original/README_BACKUP.md": {
+    "mtime": 1793006898.986782,
+    "seen": 1793007080.7216353,
+    "ast_hash": "5dad423706b943d10953d5c08d2107b9",
+    "semantic_hash": ""
+  },
+  "data/feedback/dataset_reentrenamiento.json": {
+    "mtime": 1793011494.8047438,
+    "seen": 1793011610.6768174,
+    "ast_hash": "f09f2e9366978718371f333c0c3d590e",
+    "semantic_hash": ""
+  }
+}

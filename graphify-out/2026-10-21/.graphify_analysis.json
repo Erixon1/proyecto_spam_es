@@ -1,0 +1,371 @@
+{
+  "communities": {
+    "0": [
+      "re",
+      "src_03_preprocesar_nlp",
+      "src_03_preprocesar_nlp_detectar_idiomas",
+      "src_03_preprocesar_nlp_detectar_idiomas_detect",
+      "src_03_preprocesar_nlp_guardar_grafico_etapa03",
+      "src_03_preprocesar_nlp_limpiar_texto_en",
+      "src_03_preprocesar_nlp_main",
+      "src_03_preprocesar_nlp_py_path",
+      "src_03_preprocesar_nlp_rationale_1",
+      "src_abreviaturas",
+      "src_abreviaturas_corregir_typos",
+      "src_abreviaturas_expandir_abreviaturas",
+      "src_abreviaturas_rationale_1",
+      "src_abreviaturas_rationale_118",
+      "src_abreviaturas_rationale_125",
+      "src_traductor",
+      "src_traductor_cargar_marian",
+      "src_traductor_normalizar_tokens_post_traduccion",
+      "src_traductor_rationale_1",
+      "src_traductor_rationale_225",
+      "src_traductor_rationale_243",
+      "src_traductor_rationale_254",
+      "src_traductor_rationale_260",
+      "src_traductor_rationale_287",
+      "src_traductor_rationale_42",
+      "src_traductor_rationale_74",
+      "src_traductor_segmentar_en_oraciones",
+      "src_traductor_traducir_con_marian",
+      "src_traductor_traducir_lexico",
+      "src_traductor_traducir_lote",
+      "src_traductor_traducir_texto",
+      "src_traductor_traducir_texto_completo",
+      "tests_test_traduccion_rationale_37",
+      "tests_test_traduccion_test_traducir_lexico_abreviaturas"
+    ],
+    "1": [
+      "pathlib",
+      "scripts_empaquetar_para_colab",
+      "scripts_empaquetar_para_colab_empaquetar",
+      "scripts_empaquetar_para_colab_rationale_1",
+      "src_01_extraer_hf",
+      "src_01_extraer_hf_extraer_desde_hf",
+      "src_01_extraer_hf_guardar_grafico_etapa01",
+      "src_01_extraer_hf_main",
+      "src_01_extraer_hf_py_path",
+      "src_01_extraer_hf_rationale_1",
+      "src_02_limpiar",
+      "src_02_limpiar_guardar_grafico_etapa02",
+      "src_02_limpiar_main",
+      "src_02_limpiar_py_path",
+      "src_02_limpiar_rationale_1",
+      "src_08_transformer_es",
+      "src_08_transformer_es_cargar_datos",
+      "src_08_transformer_es_entrenar_transformer",
+      "src_08_transformer_es_entrenar_transformer_compute_metrics",
+      "src_08_transformer_es_entrenar_transformer_tokenize_func",
+      "src_08_transformer_es_rationale_1",
+      "src_config",
+      "src_config_rationale_1",
+      "src_pipeline",
+      "src_pipeline_rationale_1",
+      "src_pipeline_run",
+      "subprocess",
+      "sys",
+      "zipfile"
+    ],
+    "2": [
+      "argparse",
+      "pickle",
+      "src_06_predecir",
+      "src_06_predecir_aplicar_aprendizaje_incremental",
+      "src_06_predecir_cargar_modelo",
+      "src_06_predecir_cargar_pool",
+      "src_06_predecir_detectar_idioma",
+      "src_06_predecir_evaluar_y_mostrar",
+      "src_06_predecir_gestionar_feedback",
+      "src_06_predecir_guardar_caso_incierto",
+      "src_06_predecir_limpiar_rapido",
+      "src_06_predecir_listar_pool",
+      "src_06_predecir_main",
+      "src_06_predecir_predecir",
+      "src_06_predecir_rationale_1",
+      "src_06_predecir_rationale_167",
+      "src_06_predecir_rationale_184",
+      "src_06_predecir_rationale_20",
+      "src_06_predecir_rationale_218",
+      "src_06_predecir_rationale_288",
+      "src_06_predecir_rationale_59",
+      "src_06_predecir_resolver_texto",
+      "src_06_predecir_traducir_entrada"
+    ],
+    "3": [
+      "importlib",
+      "pandas",
+      "pytest",
+      "tests_test_traduccion",
+      "tests_test_traduccion_rationale_1",
+      "tests_test_traduccion_rationale_108",
+      "tests_test_traduccion_rationale_127",
+      "tests_test_traduccion_rationale_140",
+      "tests_test_traduccion_rationale_29",
+      "tests_test_traduccion_rationale_49",
+      "tests_test_traduccion_rationale_61",
+      "tests_test_traduccion_rationale_72",
+      "tests_test_traduccion_rationale_83",
+      "tests_test_traduccion_rationale_91",
+      "tests_test_traduccion_test_modo_lexico_completo",
+      "tests_test_traduccion_test_muestra_estratificada_casos_borde",
+      "tests_test_traduccion_test_muestra_estratificada_proporciones",
+      "tests_test_traduccion_test_sanear_textos_con_nulos",
+      "tests_test_traduccion_test_traducir_lexico_entradas_vacias_y_nulas",
+      "tests_test_traduccion_test_traducir_lexico_frases_y_palabras",
+      "tests_test_traduccion_test_validar_entrada_columnas_faltantes",
+      "tests_test_traduccion_test_validar_entrada_dataframe_vacio",
+      "tests_test_traduccion_test_validar_entrada_valida"
+    ],
+    "4": [
+      "src_04_traducir_es",
+      "src_04_traducir_es_finalizar",
+      "src_04_traducir_es_guardar_diccionario",
+      "src_04_traducir_es_guardar_grafico_etapa04",
+      "src_04_traducir_es_main",
+      "src_04_traducir_es_modo_lexico",
+      "src_04_traducir_es_modo_marian",
+      "src_04_traducir_es_muestra_estratificada",
+      "src_04_traducir_es_py_path",
+      "src_04_traducir_es_rationale_1",
+      "src_04_traducir_es_rationale_127",
+      "src_04_traducir_es_rationale_269",
+      "src_04_traducir_es_rationale_318",
+      "src_04_traducir_es_rationale_36",
+      "src_04_traducir_es_rationale_361",
+      "src_04_traducir_es_rationale_51",
+      "src_04_traducir_es_rationale_61",
+      "src_04_traducir_es_rationale_71",
+      "src_04_traducir_es_rationale_92",
+      "src_04_traducir_es_sanear_textos",
+      "src_04_traducir_es_validar_entrada"
+    ],
+    "5": [
+      "matplotlib_pyplot",
+      "numpy",
+      "seaborn",
+      "sklearn_metrics",
+      "sklearn_model_selection",
+      "src_generar_graficos",
+      "src_generar_graficos_graficar_comparativa_modelos",
+      "src_generar_graficos_graficar_curvas_roc_pr",
+      "src_generar_graficos_graficar_distribucion_clases",
+      "src_generar_graficos_graficar_distribucion_longitud",
+      "src_generar_graficos_graficar_explicabilidad_xai",
+      "src_generar_graficos_graficar_matrices_confusion",
+      "src_generar_graficos_main",
+      "src_generar_graficos_rationale_1",
+      "src_generar_graficos_rationale_130",
+      "src_generar_graficos_rationale_178",
+      "src_generar_graficos_rationale_214",
+      "src_generar_graficos_rationale_43",
+      "src_generar_graficos_rationale_70",
+      "src_generar_graficos_rationale_99"
+    ],
+    "6": [
+      "src_07_evaluacion_final",
+      "src_07_evaluacion_final_cargar_test_hf",
+      "src_07_evaluacion_final_guardar_grafico_etapa07",
+      "src_07_evaluacion_final_limpiar_y_nlp",
+      "src_07_evaluacion_final_main",
+      "src_07_evaluacion_final_py_path",
+      "src_07_evaluacion_final_rationale_1",
+      "src_modelo_wrapper",
+      "src_modelo_wrapper_rationale_1",
+      "src_modelo_wrapper_rationale_30",
+      "src_modelo_wrapper_rationale_7",
+      "src_modelo_wrapper_rationale_73",
+      "src_modelo_wrapper_spamclassifierwrapper",
+      "src_modelo_wrapper_spamclassifierwrapper_explicar",
+      "src_modelo_wrapper_spamclassifierwrapper_init",
+      "src_modelo_wrapper_spamclassifierwrapper_partial_fit",
+      "src_modelo_wrapper_spamclassifierwrapper_predict",
+      "src_modelo_wrapper_spamclassifierwrapper_predict_proba"
+    ],
+    "7": [
+      "src_05_entrenar",
+      "src_05_entrenar_analisis_errores",
+      "src_05_entrenar_cv_repetida",
+      "src_05_entrenar_entrenar_corpus",
+      "src_05_entrenar_evaluar",
+      "src_05_entrenar_extraer_top_features",
+      "src_05_entrenar_guardar_grafico_etapa05",
+      "src_05_entrenar_main",
+      "src_05_entrenar_mejor_umbral",
+      "src_05_entrenar_py_path",
+      "src_05_entrenar_rationale_1",
+      "src_05_entrenar_rationale_79",
+      "src_05_entrenar_stop_es"
+    ],
+    "8": [
+      "scripts_menu",
+      "scripts_menu_mostrar_menu"
+    ],
+    "9": [
+      "tests_init",
+      "tests_init_rationale_1"
+    ],
+    "10": [
+      "src_init"
+    ]
+  },
+  "cohesion": {
+    "0": 0.1051693404634581,
+    "1": 0.10837438423645321,
+    "2": 0.15019762845849802,
+    "3": 0.1225296442687747,
+    "4": 0.1523809523809524,
+    "5": 0.15263157894736842,
+    "6": 0.13725490196078433,
+    "7": 0.2564102564102564,
+    "8": 1.0,
+    "9": 1.0,
+    "10": 1.0
+  },
+  "gods": [
+    {
+      "id": "src_modelo_wrapper_spamclassifierwrapper",
+      "label": "SpamClassifierWrapper",
+      "degree": 10
+    },
+    {
+      "id": "src_traductor_traducir_lote",
+      "label": "traducir_lote()",
+      "degree": 10
+    },
+    {
+      "id": "src_traductor_traducir_texto_completo",
+      "label": "traducir_texto_completo()",
+      "degree": 9
+    },
+    {
+      "id": "src_abreviaturas_expandir_abreviaturas",
+      "label": "expandir_abreviaturas()",
+      "degree": 8
+    },
+    {
+      "id": "src_traductor_traducir_lexico",
+      "label": "traducir_lexico()",
+      "degree": 8
+    },
+    {
+      "id": "src_04_traducir_es_main",
+      "label": "main()",
+      "degree": 8
+    },
+    {
+      "id": "src_generar_graficos_main",
+      "label": "main()",
+      "degree": 8
+    },
+    {
+      "id": "src_abreviaturas_corregir_typos",
+      "label": "corregir_typos()",
+      "degree": 7
+    },
+    {
+      "id": "src_06_predecir_predecir",
+      "label": "predecir()",
+      "degree": 7
+    },
+    {
+      "id": "src_04_traducir_es_validar_entrada",
+      "label": "validar_entrada()",
+      "degree": 7
+    }
+  ],
+  "surprises": [
+    {
+      "source": "test_traducir_lexico_entradas_vacias_y_nulas()",
+      "target": "traducir_lexico()",
+      "source_files": [
+        "tests/test_traduccion.py",
+        "src/traductor.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "test_traducir_lexico_frases_y_palabras()",
+      "target": "traducir_lexico()",
+      "source_files": [
+        "tests/test_traduccion.py",
+        "src/traductor.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "test_modo_lexico_completo()",
+      "target": "modo_lexico()",
+      "source_files": [
+        "tests/test_traduccion.py",
+        "src/04_traducir_es.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "test_muestra_estratificada_casos_borde()",
+      "target": "muestra_estratificada()",
+      "source_files": [
+        "tests/test_traduccion.py",
+        "src/04_traducir_es.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "test_muestra_estratificada_proporciones()",
+      "target": "muestra_estratificada()",
+      "source_files": [
+        "tests/test_traduccion.py",
+        "src/04_traducir_es.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `SpamClassifierWrapper` connect `SpamClassifierWrapper` to `06_predecir.py`, `05_entrenar.py`?",
+      "why": "High betweenness centrality (0.090) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 3 inferred relationships involving `SpamClassifierWrapper` (e.g. with `entrenar_corpus()` and `predecir()`) actually correct?",
+      "why": "`SpamClassifierWrapper` has 3 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `traductor.py` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.1051693404634581 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `main()` connect `SpamClassifierWrapper` to `traductor.py`?",
+      "why": "High betweenness centrality (0.036) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 2 inferred relationships involving `traducir_lote()` (e.g. with `modo_marian()` and `main()`) actually correct?",
+      "why": "`traducir_lote()` has 2 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `pathlib` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.10837438423645321 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `traducir_lote()` connect `traductor.py` to `04_traducir_es.py`, `SpamClassifierWrapper`?",
+      "why": "High betweenness centrality (0.032) - this node is a cross-community bridge."
+    }
+  ]
+}

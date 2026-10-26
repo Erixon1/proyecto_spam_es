@@ -1,0 +1,14 @@
+{
+  "0": "Traducción y Preprocesamiento NLP",
+  "1": "Ingesta de Datos y Entrenamiento",
+  "2": "Predicción y Feedback en Vivo",
+  "3": "Catálogo de Correos de Prueba",
+  "4": "Traducción EN-ES y Pruebas",
+  "5": "Gráficos y Explicabilidad del Modelo",
+  "7": "Entrenamiento del Corpus y Umbral",
+  "8": "Menú de Consola en PowerShell",
+  "9": "Paquete de Pruebas Unitarias",
+  "10": "Paquete src del Proyecto",
+  "11": "Documentación del Pipeline de Datos",
+  "13": "Instrucciones del Agente Graphify"
+}
