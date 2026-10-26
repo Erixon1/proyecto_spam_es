@@ -1,0 +1,7 @@
+modelo,accuracy,precision,recall,f1,roc_auc,pr_auc,umbral,n,corpus,f1_cv_mean,f1_cv_std,best_params
+en_nb,0.982,0.9926,0.9696,0.981,0.9988,0.9985,0.75,28806,en,0.9852,0.0009,"{'nb__alpha': 0.1, 'tfidf__max_features': 20000, 'tfidf__ngram_range': (1, 2)}"
+en_lr,0.987,0.9923,0.9805,0.9864,0.9992,0.999,0.7,28806,en,0.9869,0.0009,{'lr__C': 4.0}
+es_lex_nb,0.9835,0.9923,0.9732,0.9827,0.9988,0.9985,0.7,28806,es_lex,0.9845,0.0014,"{'nb__alpha': 0.1, 'tfidf__max_features': 20000, 'tfidf__ngram_range': (1, 1)}"
+es_lex_lr,0.9844,0.9937,0.9736,0.9836,0.9993,0.999,0.75,28806,es_lex,0.9875,0.0014,{'lr__C': 4.0}
+es_neural_nb,0.983,0.9901,0.9743,0.9821,0.998,0.9976,0.65,28806,es_neural,0.981,0.0011,"{'nb__alpha': 0.1, 'tfidf__max_features': 20000, 'tfidf__ngram_range': (1, 1)}"
+es_neural_lr,0.9783,0.9933,0.9613,0.977,0.9986,0.9978,0.75,28806,es_neural,0.9842,0.0018,{'lr__C': 4.0}

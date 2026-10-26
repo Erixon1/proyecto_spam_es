@@ -68,3 +68,16 @@ class SpamClassifierWrapper:
         except Exception:
             pass
         return {"tokens_spam": [], "tokens_ham": []}
+
+    def partial_fit(self, texto: str, label: int):
+        """Aprende de forma incremental a partir de una nueva muestra supervisada (Online Learning)."""
+        if "nb" not in self.pipeline.named_steps or "tfidf" not in self.pipeline.named_steps:
+            return False
+        tfidf = self.pipeline.named_steps["tfidf"]
+        nb = self.pipeline.named_steps["nb"]
+        X_vec = tfidf.transform([texto])
+        nb.partial_fit(X_vec, np.array([int(label)]), classes=np.array([0, 1]))
+        if "n" in self.metricas:
+            self.metricas["n"] += 1
+        return True
+

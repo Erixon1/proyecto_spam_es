@@ -35,11 +35,14 @@ def stop_es():
         return STOP_ES_FALLBACK
 
 
-def mejor_umbral(y_true, proba):
+def mejor_umbral(y_true, proba, beta=0.5):
+    """Calibra el umbral óptimo optimizando F-beta (por defecto beta=0.5).
+    Pondera la precisión el doble que el recall para penalizar fuertemente los
+    Falsos Positivos (proteger correos corporativos legítimos con números o cotizaciones)."""
     import numpy as np
-    from sklearn.metrics import f1_score
-    umbrales = np.arange(0.2, 0.81, 0.05)
-    fs = [f1_score(y_true, (proba >= u).astype(int), zero_division=0) for u in umbrales]
+    from sklearn.metrics import fbeta_score
+    umbrales = np.arange(0.2, 0.86, 0.05)
+    fs = [fbeta_score(y_true, (proba >= u).astype(int), beta=beta, zero_division=0) for u in umbrales]
     i = int(np.argmax(fs))
     return round(float(umbrales[i]), 2), round(float(fs[i]), 4)
 
