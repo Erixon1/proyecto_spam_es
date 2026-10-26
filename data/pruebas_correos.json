@@ -1,0 +1,101 @@
+[
+  {
+    "id": "spam_phishing_es_01",
+    "categoria": "Phishing Bancario",
+    "subcategoria": "Verídico",
+    "idioma": "es",
+    "etiqueta_esperada": "SPAM",
+    "texto": "Urgente: Tu cuenta bancaria ha sido bloqueada por actividad sospechosa. Haz clic aquí para verificar tu identidad y restaurar el acceso de inmediato: https://banco-seguro-verificacion.com",
+    "descripcion": "Intento clásico de phishing bancario con urgencia, enlaces y advertencia de bloqueo."
+  },
+  {
+    "id": "spam_camuflado_caracteres_02",
+    "categoria": "Spam Camuflado (Leet / Homóglifos)",
+    "subcategoria": "Camuflado",
+    "idioma": "es",
+    "etiqueta_esperada": "SPAM",
+    "texto": "¡Atenci0n! Has g-a-n-a-d-o una r3compensa en d1n3r0 en ef3ctiv0. Ingresa a nue$tro $itio para cobrarr tu pr3m1o sin costo.",
+    "descripcion": "Spam con sustitución de letras por números (leet) y guiones para burlar filtros tradicionales."
+  },
+  {
+    "id": "spam_camuflado_inversion_03",
+    "categoria": "Estafa Cripto / Finanzas",
+    "subcategoria": "Camuflado",
+    "idioma": "es",
+    "etiqueta_esperada": "SPAM",
+    "texto": "Oportunidad de inversión pasiva: Multiplica tus ahorros en un 300% mensual con nuestro bot algorítmico automatizado. Depósito mínimo garantizado con retiro inmediato. Cupos limitados para hoy.",
+    "descripcion": "Promesa fraudulenta redactada con tono formal y financiero sofisticado para ocultar el spam."
+  },
+  {
+    "id": "spam_camuflado_factura_falsa_04",
+    "categoria": "Malware / Phishing de Factura",
+    "subcategoria": "Camuflado",
+    "idioma": "es",
+    "etiqueta_esperada": "SPAM",
+    "texto": "Estimado cliente, adjuntamos el comprobante fiscal digital de su última compra no reconocida por un total de 890 EUR. Si usted no realizó esta transacción, descargue la factura adjunta factura_fiscal.pdf.exe para cancelarla de inmediato.",
+    "descripcion": "Intento de intrusión mediante pretexto de cargo falso y ejecutable camuflado como PDF."
+  },
+  {
+    "id": "ham_con_dinero_es_05",
+    "categoria": "Ham con Términos Financieros",
+    "subcategoria": "Verídico",
+    "idioma": "es",
+    "etiqueta_esperada": "HAM",
+    "texto": "Hola Laura, adjunto la cotización aprobada para la renovación de licencias de software: el total asciende a $4,500 USD con plazo de pago a 30 días. Quedo atento a la orden de compra.",
+    "descripcion": "Caso crítico que incluye signos de dólar y cifras pero pertenece a contexto laboral legítimo."
+  },
+  {
+    "id": "ham_corporativo_reunion_06",
+    "categoria": "Ham Corporativo / Negocios",
+    "subcategoria": "Verídico",
+    "idioma": "es",
+    "etiqueta_esperada": "HAM",
+    "texto": "Estimado equipo, les comparto el acta y los acuerdos de la reunión de hoy. Por favor revisen la tabla de asignaciones de tareas para el sprint que inicia el lunes. Saludos.",
+    "descripcion": "Comunicación laboral estándar con tono profesional y términos de oficina."
+  },
+  {
+    "id": "ham_tecnico_soporte_07",
+    "categoria": "Ham Notificación Técnica",
+    "subcategoria": "Verídico",
+    "idioma": "es",
+    "etiqueta_esperada": "HAM",
+    "texto": "Notificación de mantenimiento programado: El clúster de base de datos entrará en modo de solo lectura este sábado entre las 02:00 y las 04:00 AM para la aplicación de parches de seguridad del sistema operativo.",
+    "descripcion": "Alerta técnica legítima con palabras como 'parches', 'seguridad', 'mantenimiento'."
+  },
+  {
+    "id": "spam_camuflado_en_story_08",
+    "categoria": "Spam Camuflado (Storytelling)",
+    "subcategoria": "Camuflado",
+    "idioma": "en",
+    "etiqueta_esperada": "SPAM",
+    "texto": "I was skeptical about working from home until I discovered this automated payroll secret. Now I generate over $3,500 each week right from my living room with zero prior experience. Click to see the video proof before it gets removed.",
+    "descripcion": "Técnica de ingeniería social basada en historia personal para enganchar al usuario."
+  },
+  {
+    "id": "ham_corporativo_enron_09",
+    "categoria": "Ham Corporativo (Enron)",
+    "subcategoria": "Verídico",
+    "idioma": "en",
+    "etiqueta_esperada": "HAM",
+    "texto": "Good morning Mark, please review the attached pipeline natural gas transportation contract before our 2 PM conference call with legal counsel.",
+    "descripcion": "Mensaje típico legítimo del dominio corporativo de Enron en inglés."
+  },
+  {
+    "id": "spam_ofuscado_es_10",
+    "categoria": "Spam con Typos / Abreviaturas",
+    "subcategoria": "Camuflado",
+    "idioma": "es",
+    "etiqueta_esperada": "SPAM",
+    "texto": "0ferta especial imperdible!! Gana d1nero facil trabajando dsd ksa solo 2 horas al dia. entra ya a http://gananciarapida.net y no dejes pasar esta oportunidad!",
+    "descripcion": "Prueba de resistencia a ofuscación de texto y abreviaturas informales."
+  },
+  {
+    "id": "ham_spanglish_11",
+    "categoria": "Bilingüe / Spanglish Laboral",
+    "subcategoria": "Verídico",
+    "idioma": "es",
+    "etiqueta_esperada": "HAM",
+    "texto": "Hi equipo, les comparto el update del deployment en el servidor de testing. El feedback del client fue muy positivo. Cualquier issue me avisan por Slack.",
+    "descripcion": "Texto laboral con alternancia de código (Spanglish) común en equipos de tecnología."
+  }
+]

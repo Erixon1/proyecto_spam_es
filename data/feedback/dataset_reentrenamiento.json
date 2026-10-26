@@ -1,0 +1,80 @@
+[
+  {
+    "id": "fb_001",
+    "fecha": "2026-10-26 04:54:09",
+    "idioma": "ES",
+    "etiqueta": "SPAM",
+    "label": 1,
+    "categoria": "Malware / Phishing de Factura",
+    "asunto": "Comprobante fiscal digital compra no reconocida",
+    "texto": "Estimado cliente, adjuntamos el comprobante fiscal digital de su última compra no reconocida por un total de 890 EUR. Si usted no realizó esta transacción, descargue la factura adjunta factura_fiscal.pdf.exe para cancelarla de inmediato.",
+    "veces_entrenado": 2,
+    "ultima_probabilidad_spam": 0.6839,
+    "descripcion": "Pretexto de factura con ejecutable malicioso camuflado (.pdf.exe)."
+  },
+  {
+    "id": "fb_002",
+    "fecha": "2026-10-26 04:55:09",
+    "idioma": "EN",
+    "etiqueta": "SPAM",
+    "label": 1,
+    "categoria": "Farmacia en Línea",
+    "asunto": "Super generic medications discount",
+    "texto": "Save up to 80% on brand new generic medications. Genuine viagra, cialis, and sleep aids with discreet worldwide shipping and no doctor prescription required. Fast delivery directly to your door. Visit our online pharmacy catalog at http://cheap-meds-discount.net now to place your order.",
+    "veces_entrenado": 1,
+    "ultima_probabilidad_spam": 1.0,
+    "descripcion": "Spam farmacéutico tradicional en inglés sin prescripción."
+  },
+  {
+    "id": "fb_003",
+    "fecha": "2026-10-26 04:56:07",
+    "idioma": "EN",
+    "etiqueta": "HAM",
+    "label": 0,
+    "categoria": "Gestión de Riesgo Corporativo",
+    "asunto": "Risk management committee presentation",
+    "texto": "Hi Vince, please find attached the revised presentation regarding power price volatility in the Western power grid for tomorrow's risk management meeting. We have updated the forward curves and value-at-risk estimates based on yesterday's settlement prices. Let me know if you would like to discuss any adjustments beforehand. Regards, Phillip.",
+    "veces_entrenado": 1,
+    "ultima_probabilidad_spam": 0.0,
+    "descripcion": "Correo legítimo corporativo estilo Enron sobre comités de riesgo y curvas forward."
+  },
+  {
+    "id": "fb_004",
+    "fecha": "2026-10-26 05:13:21",
+    "idioma": "ES",
+    "etiqueta": "SPAM",
+    "label": 1,
+    "categoria": "Phishing Bancario",
+    "asunto": "Cuenta bancaria bloqueada por actividad sospechosa",
+    "texto": "Urgente: Tu cuenta bancaria ha sido bloqueada por actividad sospechosa. Haz clic aquí para verificar tu identidad y restaurar el acceso de inmediato: https://banco-seguro-verificacion.com",
+    "veces_entrenado": 1,
+    "ultima_probabilidad_spam": 0.943,
+    "descripcion": "Ingeniería social bancaria con sentido de urgencia y enlace apócrifo."
+  },
+  {
+    "id": "fb_005",
+    "fecha": "2026-10-26 05:35:10",
+    "idioma": "ES",
+    "etiqueta": "HAM",
+    "label": 0,
+    "categoria": "TI y Operaciones",
+    "asunto": "Mantenimiento programado en bases de datos",
+    "texto": "Notificación de mantenimiento programado: El clúster de base de datos entrará en modo de solo lectura este sábado entre las 02:00 y las 04:00 AM para la aplicación de parches de seguridad del sistema operativo.",
+    "veces_entrenado": 1,
+    "ultima_probabilidad_spam": 0.3119,
+    "descripcion": "Notificación técnica legítima de infraestructura de servidores."
+  },
+  {
+    "id": "fb_006",
+    "fecha": "2026-10-26 05:40:03",
+    "idioma": "EN",
+    "etiqueta": "HAM",
+    "label": 0,
+    "categoria": "Contratos Comerciales",
+    "asunto": "Pipeline natural gas transportation contract",
+    "texto": "Good morning Mark, please review the attached pipeline natural gas transportation contract before our 2 PM conference call with legal counsel.",
+    "veces_entrenado": 1,
+    "ultima_probabilidad_spam": 0.0,
+    "descripcion": "Comunicación laboral legítima sobre transporte de gas y revisión legal."
+  }
+]
