@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detector Bilingüe de Spam Enron (EN / ES)</title>
+  <meta name="description" content="Clasificador bilingüe de correo electrónico spam usando NLP clásico sobre el corpus Enron. Soporta inglés y español con explicabilidad XAI.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="logo-badge">SE</div>
+        <div>
+          <h1>Detector Bilingüe de Spam <span class="gradient-text">Enron</span></h1>
+          <p class="subtitle">NLP Bilingüe (Inglés / Español) &bull; Calibración de Umbral &bull; Explicabilidad XAI</p>
+        </div>
+      </div>
+      <div class="header-badges">
+        <span class="badge badge-pill badge-outline">EN / ES Integrado</span>
+      </div>
+    </header>
+
+    <!-- Main Grid -->
+    <main class="main-grid">
+      <!-- Left Column: Input and Test Cases -->
+      <section class="card input-section">
+        <div class="section-title-row">
+          <h2>Contenido del Correo</h2>
+          <div class="stats-counter" id="statsCounter">0 palabras &bull; 0 caracteres</div>
+        </div>
+
+        <!-- Quick Test Buttons -->
+        <div class="test-cases-container">
+          <div class="test-header-row">
+            <span class="test-label">Banco de Textos para Entrenar / Evaluar:</span>
+            <div class="filter-pills">
+              <button class="pill-btn active" data-filter="todos">Todos</button>
+              <button class="pill-btn" data-filter="Camuflado">Camuflados</button>
+              <button class="pill-btn" data-filter="Verídico">Verídicos</button>
+              <button id="btnRandomSample" class="pill-btn btn-random">Al Azar</button>
+            </div>
+          </div>
+          <div class="test-buttons-grid" id="testButtonsGrid">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- Textarea Input -->
+        <div class="textarea-wrapper">
+          <textarea id="emailInput" placeholder="Pega aquí el contenido del correo o selecciona uno de los ejemplos arriba para probar..." rows="7"></textarea>
+        </div>
+
+        <!-- Control Buttons -->
+        <div class="controls-row">
+          <button id="btnPredict" class="btn btn-primary">
+            Analizar Correo
+          </button>
+          <button id="btnClear" class="btn btn-secondary">Limpiar</button>
+        </div>
+      </section>
+
+      <!-- Right Column: Results & XAI -->
+      <section class="card result-section" id="resultCard">
+        <div class="result-placeholder" id="resultPlaceholder">
+          <div class="placeholder-icon">—</div>
+          <h3>Listo para Evaluar</h3>
+          <p>Selecciona un correo o escribe uno a la izquierda y presiona <strong>"Analizar Correo"</strong> para ver el veredicto en tiempo real.</p>
+        </div>
+
+        <div class="result-content hidden" id="resultContent">
+          <!-- Status Banner -->
+          <div class="status-banner" id="statusBanner">
+            <div class="status-icon" id="statusIcon"></div>
+            <div class="status-details">
+              <span class="status-badge" id="statusBadge">SPAM</span>
+              <p class="status-sub" id="statusSub">Detectado por Modelo Nativo</p>
+            </div>
+            <div class="confidence-circle" id="confidenceValue">95%</div>
+          </div>
+
+          <!-- Probability Gauge -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span>Probabilidad Estimada de Spam: <strong id="probSpamText">0%</strong></span>
+              <span class="threshold-tag">Umbral Calibrado: <strong id="probThresholdText">0.65</strong></span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="progressBarFill"></div>
+              <div class="threshold-indicator" id="thresholdIndicator" title="Punto de corte"></div>
+            </div>
+          </div>
+
+          <!-- Metadata Tags -->
+          <div class="meta-tags-grid">
+            <div class="meta-tag">
+              <span class="meta-label">Idioma Detectado</span>
+              <span class="meta-val" id="metaLang">ES</span>
+            </div>
+            <div class="meta-tag">
+              <span class="meta-label">Motor de Inferencia</span>
+              <span class="meta-val" id="metaEngine">Español Nativo</span>
+            </div>
+            <div class="meta-tag">
+              <span class="meta-label">Latencia</span>
+              <span class="meta-val highlight" id="metaLatency">~2 ms</span>
+            </div>
+          </div>
+
+          <!-- Explainability XAI -->
+          <div class="xai-container">
+            <h3>Explicabilidad en Tiempo Real (Log-Odds XAI)</h3>
+            <p class="xai-desc">Términos que mayor influencia ejercieron en la clasificación:</p>
+            <div class="chips-group">
+              <span class="group-title spam-title">Impulsaron a SPAM (+):</span>
+              <div class="chips-container" id="spamChips"></div>
+            </div>
+            <div class="chips-group">
+              <span class="group-title ham-title">Impulsaron a HAM / LEGÍTIMO (-):</span>
+              <div class="chips-container" id="hamChips"></div>
+            </div>
+          <!-- Training Feedback / Online Learning Section -->
+          <div class="feedback-container">
+            <div class="feedback-header">
+              <h3>¿El resultado fue incorrecto o deseas enseñar al modelo?</h3>
+              <p>Entrena al modelo en caliente para que asimile este correo inmediatamente:</p>
+            </div>
+            <div class="feedback-actions">
+              <button id="btnTeachSpam" class="btn btn-feedback btn-feedback-spam">
+                <span>Enseñar que es SPAM</span>
+              </button>
+              <button id="btnTeachHam" class="btn btn-feedback btn-feedback-ham">
+                <span>Enseñar que es HAM</span>
+              </button>
+            </div>
+            <div id="feedbackStatus" class="feedback-status-msg hidden"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Training History Section -->
+    <section class="card history-section">
+      <div class="section-title-row">
+        <div>
+          <h2>Historial de Correos Entrenados y Feedback</h2>
+          <span class="history-subtitle-meta" id="historyPaginationInfo">Mostrando 0 de 0 correos</span>
+        </div>
+        <div class="history-controls">
+          <div class="history-search-wrapper">
+            <input type="text" id="historySearchInput" class="input-history-search" placeholder="Buscar en texto del mensaje..." autocomplete="off">
+            <button id="btnClearSearch" class="btn-clear-search hidden" title="Limpiar búsqueda">&times;</button>
+          </div>
+          <label for="historyPageSizeSelect" class="page-size-label">Mostrar:</label>
+          <select id="historyPageSizeSelect" class="select-page-size">
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="all">Todos</option>
+          </select>
+          <span class="badge badge-pill" id="historyCounter">0 registros</span>
+        </div>
+      </div>
+      <p class="history-desc">Registro ordenado por la fecha más reciente (incluyendo actualizaciones). Los correos con múltiples iteraciones muestran una flecha y badge de evaluaciones; haz clic en cualquiera para desplegar u ocultar su evolución histórica cronológica:</p>
+      
+      <div class="history-table-container">
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>Fecha / Hora</th>
+              <th>Idioma</th>
+              <th>Mensaje / Correo</th>
+              <th>% Antes</th>
+              <th>% Después</th>
+              <th>Variación (&Delta;)</th>
+              <th>Predicción</th>
+              <th>Enseñanza Humana</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody id="historyTableBody">
+            <tr>
+              <td colspan="9" class="text-center text-muted">Aún no se han enviado correos para reentrenar.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination Footer -->
+      <div class="pagination-container" id="paginationContainer">
+        <div class="pagination-page-info" id="paginationPageDetails">Página 1 de 1</div>
+        <div class="pagination-buttons">
+          <button id="btnPrevPage" class="btn-page" disabled>Anterior</button>
+          <div class="pagination-numbers" id="paginationNumbers"></div>
+          <button id="btnNextPage" class="btn-page" disabled>Siguiente</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Grupo 5 &bull; Proyecto Inteligencia Artificial &bull; Corpus Enron NLP Clásico &amp; MarianMT</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
